@@ -3,119 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔋 Pil Algılama Sistemi</title>
+    <title>Pil Algılama</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1>🔋 PİL ALGILAMA SİSTEMİ</h1>
-            <p>E-Atık Geri Dönüşüm Projesi | YOLOv8 AI Model</p>
+        <header>
+            <h1>E-Waste Recycling Project</h1>
+            <p>E-Waste Project | Muhammed Taha Eperen</p>
         </header>
 
-        <!-- Main Card -->
-        <div class="main-card">
-            <!-- Upload Section -->
-            <div id="uploadSection" class="upload-section">
-                <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📸</div>
-                    <div class="upload-text">Pil Fotoğrafı Yükle</div>
-                    <div class="upload-hint">Tıkla veya sürükle-bırak (JPG, PNG)</div>
+        <main>
+            <div id="uploadSection">
+                <div id="uploadArea">
+                    <div class="upload-icon">+</div>
+                    <div class="upload-text">Upload Photo</div>
+                    <div class="upload-hint">JPG, PNG</div>
                 </div>
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
                 
-                <div class="button-group">
-                    <button class="btn btn-primary" id="analyzeBtn" disabled>
-                        <span class="btn-icon">🔍</span> ANALİZ ET
-                    </button>
-                    <button class="btn btn-secondary" id="resetBtn" style="display: none;">
-                        <span class="btn-icon">🔄</span> YENİDEN BAŞLA
-                    </button>
+                <div class="buttons">
+                    <button id="analyzeBtn" disabled>ANALYZE</button>
+                    <button id="resetBtn" style="display: none;">YENİDEN</button>
                 </div>
             </div>
 
-            <!-- Loading -->
-            <div id="loadingSection" class="loading-section" style="display: none;">
+            <div id="loadingSection" style="display: none;">
                 <div class="spinner"></div>
-                <p class="loading-text">Yapay zeka analiz ediyor...</p>
-                <p class="loading-subtext">Bu işlem birkaç saniye sürebilir</p>
+                <p>Analiz ediliyor...</p>
             </div>
 
-            <!-- Results -->
-            <div id="resultsSection" class="results-section" style="display: none;">
-                <!-- Success Message -->
-                <div class="success-banner">
-                    <span class="success-icon">✅</span>
-                    <span id="successMessage">Analiz tamamlandı!</span>
+            <div id="resultsSection" style="display: none;">
+                <div class="success">
+                    <span id="successMessage">Tamamlandı</span>
                 </div>
 
-                <!-- Image Comparison -->
-                <div class="image-grid">
+                <div class="images">
                     <div class="image-card">
-                        <h3>📷 Orijinal Görüntü</h3>
-                        <div class="image-wrapper">
-                            <img id="originalImage" src="" alt="Orijinal">
-                        </div>
+                        <h3>Orijinal</h3>
+                        <img id="originalImage" src="" alt="Orijinal">
                     </div>
                     <div class="image-card">
-                        <h3>✅ Tespit Sonucu</h3>
-                        <div class="image-wrapper">
-                            <img id="resultImage" src="" alt="Sonuç">
-                        </div>
+                        <h3>Sonuç</h3>
+                        <img id="resultImage" src="" alt="Sonuç">
                     </div>
                 </div>
 
-                <!-- Statistics -->
-                <div class="stats-card">
-                    <h3>📊 Analiz İstatistikleri</h3>
+                <div class="stats">
+                    <h3>İstatistikler</h3>
                     <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-icon">🔋</div>
-                            <div class="stat-content">
-                                <div class="stat-value" id="totalBatteries">0</div>
-                                <div class="stat-label">Tespit Edilen Pil</div>
-                            </div>
+                        <div class="stat">
+                            <span id="totalBatteries">0</span>
+                            <label>Pil</label>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-icon">📈</div>
-                            <div class="stat-content">
-                                <div class="stat-value" id="avgConfidence">0%</div>
-                                <div class="stat-label">Ortalama Güven</div>
-                            </div>
+                        <div class="stat">
+                            <span id="avgConfidence">0%</span>
+                            <label>Ortalama</label>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-icon">🎯</div>
-                            <div class="stat-content">
-                                <div class="stat-value" id="maxConfidence">0%</div>
-                                <div class="stat-label">Maksimum Güven</div>
-                            </div>
+                        <div class="stat">
+                            <span id="maxConfidence">0%</span>
+                            <label>Maksimum</label>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-icon">⚡</div>
-                            <div class="stat-content">
-                                <div class="stat-value" id="highConfCount">0</div>
-                                <div class="stat-label">Yüksek Güven (>70%)</div>
-                            </div>
+                        <div class="stat">
+                            <span id="highConfCount">0</span>
+                            <label>Yüksek</label>
                         </div>
                     </div>
                 </div>
 
-                <!-- Detection Details -->
-                <div class="details-card">
-                    <h3>🔍 Tespit Detayları</h3>
-                    <div id="detectionList" class="detection-list"></div>
+                <div class="details">
+                    <h3>Detaylar</h3>
+                    <div id="detectionList"></div>
                 </div>
             </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>🤖 Powered by YOLOv8 | Dataset: Roboflow Battery v2</p>
-            <p>♻️ E-Waste Detection Project 2025</p>
-        </footer>
+        </main>
     </div>
-
-    <script src="./script.js"></script>
 </body>
+<script src="script.js"></script>
 </html>
