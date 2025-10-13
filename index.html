@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔋 Pil Algılama Sistemi</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🔋 PİL ALGILAMA SİSTEMİ</h1>
+            <p>E-Atık Geri Dönüşüm Projesi | YOLOv8 AI Model</p>
+        </header>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <!-- Upload Section -->
+            <div id="uploadSection" class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">Pil Fotoğrafı Yükle</div>
+                    <div class="upload-hint">Tıkla veya sürükle-bırak (JPG, PNG)</div>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" id="analyzeBtn" disabled>
+                        <span class="btn-icon">🔍</span> ANALİZ ET
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn" style="display: none;">
+                        <span class="btn-icon">🔄</span> YENİDEN BAŞLA
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div id="loadingSection" class="loading-section" style="display: none;">
+                <div class="spinner"></div>
+                <p class="loading-text">Yapay zeka analiz ediyor...</p>
+                <p class="loading-subtext">Bu işlem birkaç saniye sürebilir</p>
+            </div>
+
+            <!-- Results -->
+            <div id="resultsSection" class="results-section" style="display: none;">
+                <!-- Success Message -->
+                <div class="success-banner">
+                    <span class="success-icon">✅</span>
+                    <span id="successMessage">Analiz tamamlandı!</span>
+                </div>
+
+                <!-- Image Comparison -->
+                <div class="image-grid">
+                    <div class="image-card">
+                        <h3>📷 Orijinal Görüntü</h3>
+                        <div class="image-wrapper">
+                            <img id="originalImage" src="" alt="Orijinal">
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <h3>✅ Tespit Sonucu</h3>
+                        <div class="image-wrapper">
+                            <img id="resultImage" src="" alt="Sonuç">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-card">
+                    <h3>📊 Analiz İstatistikleri</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">🔋</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalBatteries">0</div>
+                                <div class="stat-label">Tespit Edilen Pil</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">📈</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="avgConfidence">0%</div>
+                                <div class="stat-label">Ortalama Güven</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="maxConfidence">0%</div>
+                                <div class="stat-label">Maksimum Güven</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="highConfCount">0</div>
+                                <div class="stat-label">Yüksek Güven (>70%)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detection Details -->
+                <div class="details-card">
+                    <h3>🔍 Tespit Detayları</h3>
+                    <div id="detectionList" class="detection-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🤖 Powered by YOLOv8 | Dataset: Roboflow Battery v2</p>
+            <p>♻️ E-Waste Detection Project 2025</p>
+        </footer>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
