@@ -1,5 +1,5 @@
 // API Base URL
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'http://45.67.203.228:5000/api';
 
 // DOM Elements
 const uploadArea = document.getElementById('uploadArea');
