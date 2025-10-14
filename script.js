@@ -1,7 +1,5 @@
-// API Base URL
 const API_BASE = 'https://th-ewaste-erasmus.duckdns.org/api';
 
-// DOM Elements
 const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const analyzeBtn = document.getElementById('analyzeBtn');
@@ -13,24 +11,23 @@ const resultsSection = document.getElementById('resultsSection');
 
 let selectedFile = null;
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     checkServerStatus();
 });
 
 function setupEventListeners() {
-    // Upload area click
+
     uploadArea.addEventListener('click', () => {
         fileInput.click();
     });
 
-    // File selection
+
     fileInput.addEventListener('change', (e) => {
         handleFileSelect(e.target.files[0]);
     });
 
-    // Drag and drop
+
     uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('drag-over');
@@ -50,17 +47,16 @@ function setupEventListeners() {
         }
     });
 
-    // Analyze button
+
     analyzeBtn.addEventListener('click', analyzeImage);
 
-    // Reset button
     resetBtn.addEventListener('click', resetInterface);
 }
 
 function handleFileSelect(file) {
     if (!file) return;
 
-    // Check file type
+
     if (!file.type.startsWith('image/')) {
         alert('❌ Lütfen bir görüntü dosyası seçin!');
         return;
@@ -68,7 +64,7 @@ function handleFileSelect(file) {
 
     selectedFile = file;
     
-    // Update UI
+
     uploadArea.querySelector('.upload-text').textContent = `✓ ${file.name}`;
     uploadArea.querySelector('.upload-hint').textContent = `Boyut: ${formatFileSize(file.size)}`;
     uploadArea.classList.add('file-selected');
@@ -83,7 +79,7 @@ async function analyzeImage() {
         return;
     }
 
-    // Show loading
+
     uploadSection.style.display = 'none';
     loadingSection.style.display = 'block';
     resultsSection.style.display = 'none';
@@ -115,27 +111,26 @@ async function analyzeImage() {
 }
 
 function displayResults(data) {
-    // Hide loading
+
     loadingSection.style.display = 'none';
     resultsSection.style.display = 'block';
     resetBtn.style.display = 'inline-block';
 
-    // Success message
+
     const message = `${data.battery_count} adet pil başarıyla tespit edildi!`;
     document.getElementById('successMessage').textContent = message;
 
-    // Images
     document.getElementById('originalImage').src = `${API_BASE}/images/${data.original_filename}`;
     document.getElementById('resultImage').src = `${API_BASE}/images/${data.result_filename}`;
 
-    // Statistics
+
     const stats = data.statistics;
     document.getElementById('totalBatteries').textContent = stats.total;
     document.getElementById('avgConfidence').textContent = `${stats.avg_confidence.toFixed(1)}%`;
     document.getElementById('maxConfidence').textContent = `${stats.max_confidence.toFixed(1)}%`;
     document.getElementById('highConfCount').textContent = stats.high_conf_count;
 
-    // Detection details
+
     displayDetectionDetails(data.detections);
 
     console.log('✅ Sonuçlar görüntülendi');
