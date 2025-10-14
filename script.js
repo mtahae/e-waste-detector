@@ -58,7 +58,7 @@ function handleFileSelect(file) {
 
 
     if (!file.type.startsWith('image/')) {
-        alert('❌ Lütfen bir görüntü dosyası seçin!');
+        alert('Please select an image file!');
         return;
     }
 
@@ -70,12 +70,12 @@ function handleFileSelect(file) {
     uploadArea.classList.add('file-selected');
     analyzeBtn.disabled = false;
 
-    console.log('✓ Dosya seçildi:', file.name);
+    console.log('File Selected:', file.name);
 }
 
 async function analyzeImage() {
     if (!selectedFile) {
-        alert('❌ Lütfen önce bir görüntü seçin!');
+        alert('Please select an image first!');
         return;
     }
 
@@ -84,7 +84,7 @@ async function analyzeImage() {
     loadingSection.style.display = 'block';
     resultsSection.style.display = 'none';
 
-    console.log('🔍 Analiz başlatılıyor...');
+    console.log('Analyze is starting...');
 
     const formData = new FormData();
     formData.append('image', selectedFile);
@@ -98,14 +98,14 @@ async function analyzeImage() {
         const data = await response.json();
 
         if (data.success) {
-            console.log('✅ Analiz başarılı:', data);
+            console.log('Analyzing is Successfull:', data);
             displayResults(data);
         } else {
-            throw new Error(data.error || 'Bilinmeyen hata');
+            throw new Error(data.error || 'Unknown Error');
         }
     } catch (error) {
-        console.error('❌ Analiz hatası:', error);
-        alert(`❌ Analiz hatası:\n${error.message}`);
+        console.error('Analyzing Error:', error);
+        alert(`Analyzing Error:\n${error.message}`);
         resetInterface();
     }
 }
@@ -117,7 +117,7 @@ function displayResults(data) {
     resetBtn.style.display = 'inline-block';
 
 
-    const message = `${data.battery_count} adet pil başarıyla tespit edildi!`;
+    const message = `${data.battery_count} batteries detected successfully!`;
     document.getElementById('successMessage').textContent = message;
 
     document.getElementById('originalImage').src = `${API_BASE}/images/${data.original_filename}`;
@@ -133,7 +133,7 @@ function displayResults(data) {
 
     displayDetectionDetails(data.detections);
 
-    console.log('✅ Sonuçlar görüntülendi');
+    console.log('Results Displayed');
 }
 
 function displayDetectionDetails(detections) {
@@ -179,8 +179,8 @@ function resetInterface() {
     selectedFile = null;
     fileInput.value = '';
     
-    uploadArea.querySelector('.upload-text').textContent = 'Pil Fotoğrafı Yükle';
-    uploadArea.querySelector('.upload-hint').textContent = 'Tıkla veya sürükle-bırak (JPG, PNG)';
+    uploadArea.querySelector('.upload-text').textContent = 'Upload a photo';
+    uploadArea.querySelector('.upload-hint').textContent = 'Click or drag and drop (JPG, PNG)';
     uploadArea.classList.remove('file-selected');
     analyzeBtn.disabled = true;
     
@@ -189,7 +189,7 @@ function resetInterface() {
     resultsSection.style.display = 'none';
     resetBtn.style.display = 'none';
     
-    console.log('🔄 Interface sıfırlandı');
+    console.log('Interface got reseted');
 }
 
 async function checkServerStatus() {
@@ -198,12 +198,12 @@ async function checkServerStatus() {
         const data = await response.json();
         
         if (data.status === 'online') {
-            console.log('✅ Server bağlantısı başarılı');
-            console.log('   Model yüklü:', data.model_loaded);
+            console.log('Server Connection is Successful');
+            console.log('Model Uploaded:', data.model_loaded);
         }
     } catch (error) {
-        console.warn('⚠️ Server bağlantısı kurulamadı:', error.message);
-        alert('⚠️ Backend sunucuya bağlanılamıyor!\nLütfen python app.py çalıştığından emin olun.');
+        console.warn('Server bağlantısı kurulamadı:', error.message);
+        alert('Can not connected to the backend!\nMake sure app.py is running!');
     }
 }
 
