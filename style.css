@@ -346,6 +346,67 @@ button:disabled {
   padding: 40px 20px;
 }
 
+.no-detections {
+  color: #888;
+  font-size: 12px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.recycling {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.recycling h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.recycling-item {
+  background: #222;
+  border: 1px solid #333;
+  border-left: 3px solid #4a9eff;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.recycling-item h4 {
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.recycling-item ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.recycling-item li {
+  color: #ccc;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+  padding-left: 15px;
+  position: relative;
+}
+
+.recycling-item li:before {
+  content: "•";
+  color: #4a9eff;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
 @media (max-width: 768px) {
   body {
     padding: 20px 10px;
