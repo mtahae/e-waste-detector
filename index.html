@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Waste Detector</title>
+    <title>Pil Algılama</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
                 
                 <div class="buttons">
                     <button id="analyzeBtn" disabled>ANALYZE</button>
-                    <button id="resetBtn" style="display: none;">Again</button>
+                    <button id="resetBtn" style="display: none;">YENİDEN</button>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
 
                 <div class="images">
                     <div class="image-card">
-                        <h3>Orıgınal</h3>
+                        <h3>Original</h3>
                         <img id="originalImage" src="" alt="Orijinal">
                     </div>
                     <div class="image-card">
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="stats">
-                    <h3>Statıstıcs</h3>
+                    <h3>Statistics</h3>
                     <div class="stats-grid">
                         <div class="stat">
                             <span id="totalBatteries">0</span>
@@ -62,17 +62,17 @@
                         </div>
                         <div class="stat">
                             <span id="maxConfidence">0%</span>
-                            <label>Maxımum</label>
+                            <label>Maximum</label>
                         </div>
                         <div class="stat">
                             <span id="highConfCount">0</span>
-                            <label>Hıgh</label>
+                            <label>High</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="details">
-                    <h3>Detaıls</h3>
+                    <h3>Details</h3>
                     <div id="detectionList"></div>
                 </div>
             </div>
@@ -81,4 +81,3 @@
 </body>
 <script src="script.js"></script>
 </html>
-
